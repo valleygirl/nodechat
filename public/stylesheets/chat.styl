@@ -1,0 +1,86 @@
+/*
+ * Import nib
+ */
+@import 'nib'
+
+/*
+ * Nib provides a CSS reset
+ */
+global-reset()
+
+*
+  margin: 0
+  padding: 0
+  box-sizing: border-box
+  overflow: auto
+
+body
+  font: 13px Helvetica, Arial
+
+form
+  background: grey
+  padding: none
+  position: fixed
+  bottom: 0
+  width: 100%
+
+form button
+  width: 20%
+  background: rgb(130, 224, 255)
+  border: none
+  padding: 10px
+  alignment-baseline: central
+  margin-top: .5%
+  margin-bottom: .5%
+      
+#m
+  white-space: nowrap
+  width: 100%
+  height: 50px
+  margin-left: auto
+  overflow-x: auto
+  overflow-y: scroll
+  word-wrap: break-word
+  margin-right: auto
+  padding: 10px
+  text-align: left
+  
+#messages
+  width: 100%
+  height: 450px
+  word-wrap: break-word
+  list-style-type: none
+  margin-left: auto
+  margin-right: auto
+  margin-top: auto
+  margin-bottom: auto
+  padding: 10px
+  
+#messages li
+  padding: 10px
+  background: #eee
+  border-bottom: 1px solid white
+
+.right
+  text-align: right
+  font-weight: bold
+  
+.italic
+  font-style: italic
+  
+.center
+  text-align: center
+  font-weight: bold
+  width: 100%
+
+.username
+  display:inline
+  font-weight: bold
+  font-size: medium
+  
+.timestamp
+  float: right
+  display:inline
+  
+.usermessage
+  width: 100%

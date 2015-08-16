@@ -1,0 +1,22 @@
+doctype
+html
+  head
+    title FSE Chat Room
+    link(rel="stylesheet", href="stylesheets/chat.css")
+  body
+    #wmsg.center
+    ul#messages
+      each message in messages
+        li
+          .username #{message.name}
+          .timestamp #{message.time}
+          .usermessage #{message.ms}
+    
+    form(action="")
+      input#m(autocomplete="off")
+      center
+        button Post
+        
+  script(src="https://cdn.socket.io/socket.io-1.2.0.js")
+  script(src="http://code.jquery.com/jquery-1.11.1.js")
+  script(src="scripts/chat.js")

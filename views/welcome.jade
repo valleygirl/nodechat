@@ -1,0 +1,23 @@
+doctype
+html
+  head
+    title Welcome to Chat
+    link(rel="stylesheet", href="/stylesheets/welcome.css")
+  body
+    #wmsg.center Log in to FSE Chat Room
+    ul#messages
+    form(action="")
+      input#fname(type="text"
+        autocomplete="off"
+        value="Enter your name:"
+        onblur="javascript:maybeAddText()"
+        onclick="javascript:maybeClearText()"
+        onFocus="javascript:maybeClearText()"
+      )
+      br
+      center
+        button#join Join
+      
+    script(src="https://cdn.socket.io/socket.io-1.2.0.js")
+    script(src="http://code.jquery.com/jquery-1.11.1.js")
+    script(src="scripts/welcome.js")
