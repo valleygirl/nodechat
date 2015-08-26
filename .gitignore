@@ -4,3 +4,6 @@ node_modules
 
 # CSS is auto-generated from .styl
 *.css
+
+# Ignore SQL-lite database files
+*.db

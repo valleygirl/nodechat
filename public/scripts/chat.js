@@ -12,7 +12,7 @@ function myDateTime() {
   var day = new Date().getDate();
   var hours = new Date().getHours();
   var minutes =new Date().getMinutes();
-  var ampm = hours >= 12 ? 'pm' : 'am';
+  var ampm = hours >= 12 ? 'PM' : 'AM';
   
   hours = hours % 12;
   hours = hours ? hours : 12;
@@ -20,7 +20,8 @@ function myDateTime() {
   month = month < 10 ? '0' + month : month;
   day = day < 10 ? '0' + day: day;
   
-  var datetime = month + '.' + day + '.' + year + ''+ hours + ':' + minutes + ' ' + ampm;
+  var datetime = month + '.' + day + '.' + year + '  '
+      + hours + ':' + minutes + ' ' + ampm;
   
   return datetime
 };
@@ -36,7 +37,8 @@ $(document).ready(function () {
     // User hasn't provided a name. Send user to welcome page.
     window.location = '/';
   }
-  socket.emit('user event', fname + ' joined the chat room');   
+  socket.emit('user event', fname + ' joined the chat room');
+  pageScroll();
 });
 
 
@@ -50,6 +52,12 @@ function Displaychat(name,dnt,usr_msg) {
     .append(user_name)
     .append(date_time)
     .append(user_msg));
+  pageScroll();
+};
+
+function pageScroll() {
+  var scrollHeight = $("#messages-container")[0].scrollHeight;
+  $("#messages-container").animate({scrollTop: scrollHeight});
 };
 
 

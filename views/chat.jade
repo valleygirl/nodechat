@@ -5,12 +5,13 @@ html
     link(rel="stylesheet", href="stylesheets/chat.css")
   body
     #wmsg.center
-    ul#messages
-      each message in messages
-        li
-          .username #{message.name}
-          .timestamp #{message.time}
-          .usermessage #{message.ms}
+    #messages-container
+      ul#messages
+        each message in messages
+          li
+            .username #{message.name}
+            .timestamp #{message.time}
+            .usermessage #{message.ms}
     
     form(action="")
       input#m(autocomplete="off")
