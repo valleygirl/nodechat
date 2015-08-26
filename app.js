@@ -35,7 +35,15 @@ app.get('/', function(req, res){
 
 
 app.get('/chatroom', function(req, res){
+  var fname = req.query.fname;
   db.all("SELECT *  FROM chat", function(err, rows) {
+    if (fname) {
+      for (index in rows) {
+        if (fname == rows[index].name) {
+          rows[index].name = "me";
+        }
+      }
+    }
     res.render('chat', {
       messages : rows
     });
@@ -46,7 +54,6 @@ app.get('/chatroom', function(req, res){
 io.on('connection', function(socket) {
   socket.on('chat message', function(msg)
   {
-    console.log('chat message: ' + msg);
     socket.broadcast.emit('chat message', msg);
     var name = msg.split("||")[0];
     var time = msg.split("||")[1];
@@ -59,7 +66,6 @@ io.on('connection', function(socket) {
   
   socket.on('user event', function(msg)
   {
-    console.log('user event: ' + msg);
     socket.broadcast.emit('user event', msg);
   });
     
