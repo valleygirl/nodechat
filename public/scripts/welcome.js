@@ -1,23 +1,21 @@
+// Disable the 'Join' button.
 function disablejoin() {
   document.getElementById("join").disabled=true
 };
 disablejoin();
     
-    
-function enablejoin() {
-  document.getElementById("join").disabled=false
-};
-    
-    
+
+// Clear the informational messages on the welcome page and enable the 'Join' button.
 function maybeClearText() {
   if($("#fname").val()=='Enter your name:') {
     $("#fname").val("");
     $("#wmsg").hide();
-    enablejoin();
+    document.getElementById("join").disabled=false
   }
 };
     
-    
+
+// Display informational messages on the welcome page and disable the 'Join' button.
 function maybeAddText() {
   if($("#fname").val().trim()=='') {
     $("#fname").val('Enter your name:');

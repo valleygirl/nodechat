@@ -5,7 +5,7 @@ fname = fname.split("=")[1];
 $("#wmsg").text("Welcome to FSE Chat, " + fname +  ". Enjoy!") ;
 $("#wmsg").show();
 
-
+// Get the current date and time.
 function myDateTime() {
   var year = new Date().getFullYear();
   var month = (1 + new Date().getMonth());
@@ -26,7 +26,7 @@ function myDateTime() {
   return datetime
 };
 
-
+// Display a message when a user leaves the chat room.
 window.onbeforeunload = function (event) {
   socket.emit('user event', fname + ' left the chat room');   
 };
@@ -37,11 +37,13 @@ $(document).ready(function () {
     // User hasn't provided a name. Send user to welcome page.
     window.location = '/';
   }
+  // Display a message when a user joins the chat room.
   socket.emit('user event', fname + ' joined the chat room');
   pageScroll();
 });
 
 
+// Display chat messages along with name and current time.
 function Displaychat(name,dnt,usr_msg) {
   var user_name = $('<div class="username">').text(name);
   var date_time = $('<div class="timestamp">').text(dnt);
@@ -55,15 +57,44 @@ function Displaychat(name,dnt,usr_msg) {
   pageScroll();
 };
 
+
+// Scroll to the most recent message.
 function pageScroll() {
   var scrollHeight = $("#messages-container")[0].scrollHeight;
   $("#messages-container").animate({scrollTop: scrollHeight});
 };
 
 
+// Disable the 'Post' button.
+function disablepost() {
+  document.getElementById("post").disabled=true
+};
+disablepost();
+
+
+// Clear the informational message and enable the 'Post' button.
+function maybeClearText() {
+  if($("#m").val()=='Enter your message here...') {
+    $("#m").val("");
+    $("#m").removeClass("italic");
+    document.getElementById("post").disabled=false;
+  }
+};
+    
+
+// Display helper message and disable the 'Post' button.
+function maybeAddText() {
+  if($("#m").val().trim()=='') {
+    $("#m").val('Enter your message here...');
+    $("#m").addClass("italic");
+    disablepost();
+    }
+};
+
+
 $('form').submit(function() {
   Displaychat("me", myDateTime(), $('#m').val());
-  // Sending user_name + user_messages + time to the server.
+  // Send user_name + user_messages + time to the server.
   socket.emit('chat message', fname +  '||' + myDateTime() + "||" + $('#m').val());   
   $('#m').val('');
   return false;
@@ -81,4 +112,5 @@ socket.on('chat message', function(msg) {
   
 socket.on('user event', function(msg) {
   $('#messages').append($('<li class=italic>').text(msg));
+  pageScroll();
 });
